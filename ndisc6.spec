@@ -11,7 +11,10 @@ URL:		http://people.via.ecp.fr/~rem/ndisc6/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-ndisc6 consists of two small command line tools (ndisc6 and rdisc6) that perform ICMPv6 Neighbor Discovery and ICMPv6 Router Discovery respectively. It is primarily meant for IPv6 networking diagnostics or to detect rogue IPv6 nodes or routers on an Ethernet segment.
+ndisc6 consists of two small command line tools (ndisc6 and rdisc6)
+that perform ICMPv6 Neighbor Discovery and ICMPv6 Router Discovery
+respectively. It is primarily meant for IPv6 networking diagnostics or
+to detect rogue IPv6 nodes or routers on an Ethernet segment.
 
 %prep
 %setup -q
@@ -34,11 +37,3 @@ rm -rf $RPM_BUILD_ROOT
 %doc README
 %attr(755,root,root) %{_sbindir}/*
 %{_mandir}/man8/*
-
-%changelog
-* %{date} PLD Team <feedback@pld-linux.org>
-All persons listed below can be reached at <cvs_login>@pld-linux.org
-
-$Log: ndisc6.spec,v $
-Revision 1.1  2005-08-27 15:07:59  aredridel
-- added
