@@ -29,7 +29,7 @@ Ethernet.
 
 %build
 %{__make} ndisc6 rdisc6 \
-	CC=%{__cc} \
+	CC="%{__cc}" \
 	CFLAGS="%{rpmcflags} -Wall"
 
 %install
