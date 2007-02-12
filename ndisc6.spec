@@ -1,5 +1,5 @@
 Summary:	Neighbor Discovery tools for IPv6
-Summary(pl):	Narzêdzia do rozpoznawania s±siadów dla IPv6
+Summary(pl.UTF-8):   NarzÄ™dzia do rozpoznawania sÄ…siadÃ³w dla IPv6
 Name:		ndisc6
 Version:	0.4.1
 Release:	1
@@ -16,12 +16,12 @@ that perform ICMPv6 Neighbor Discovery and ICMPv6 Router Discovery
 respectively. It is primarily meant for IPv6 networking diagnostics or
 to detect rogue IPv6 nodes or routers on an Ethernet segment.
 
-%description -l pl
-ndisc6 zawiera dwa ma³e narzêdzia dzia³aj±ce z linii poleceñ (ndisc6 i
-rdisc6) wykonuj±ce odpowiednio ICMPv6 Neighbor Discovery
-(rozpoznawanie s±siadów) i ICMPv6 Router Discovery (rozpoznawanie
-routerów). S± przeznaczone g³ównie do diagnostyki sieci IPv6 oraz
-wykrywania bezprawnych wêz³ów lub routerów IPv6 w segmencie sieci
+%description -l pl.UTF-8
+ndisc6 zawiera dwa maÅ‚e narzÄ™dzia dziaÅ‚ajÄ…ce z linii poleceÅ„ (ndisc6 i
+rdisc6) wykonujÄ…ce odpowiednio ICMPv6 Neighbor Discovery
+(rozpoznawanie sÄ…siadÃ³w) i ICMPv6 Router Discovery (rozpoznawanie
+routerÃ³w). SÄ… przeznaczone gÅ‚Ã³wnie do diagnostyki sieci IPv6 oraz
+wykrywania bezprawnych wÄ™zÅ‚Ã³w lub routerÃ³w IPv6 w segmencie sieci
 Ethernet.
 
 %prep
