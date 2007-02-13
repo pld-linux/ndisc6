@@ -1,5 +1,5 @@
 Summary:	Neighbor Discovery tools for IPv6
-Summary(pl.UTF-8):   Narzędzia do rozpoznawania sąsiadów dla IPv6
+Summary(pl.UTF-8):	Narzędzia do rozpoznawania sąsiadów dla IPv6
 Name:		ndisc6
 Version:	0.4.1
 Release:	1
