@@ -5,28 +5,37 @@ Version:	1.0.1
 Release:	1
 License:	GPL v2
 Group:		Networking/Admin
-Source0:	http://people.via.ecp.fr/~rem/ndisc6/%{name}-%{version}.tar.bz2
+Source0:	http://www.remlab.net/files/ndisc6/%{name}-%{version}.tar.bz2
 # Source0-md5:	d0b8233a60e29ad78d9aebb8cef0b3f2
 Patch0:		%{name}-no_chown.patch
-URL:		http://people.via.ecp.fr/~rem/ndisc6/
+URL:		http://www.remlab.net/ndisc6/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-ndisc6 consists of two small command line tools (ndisc6 and rdisc6)
-that perform ICMPv6 Neighbor Discovery and ICMPv6 Router Discovery
-respectively. It is primarily meant for IPv6 networking diagnostics or
-to detect rogue IPv6 nodes or routers on an Ethernet segment.
+NDisc6 is a small collection of useful tools for IPv6 networking.
+It includes the following programs:
+- ndisc6: ICMPv6 Neighbor Discovery tool
+- rdisc6: ICMPv6 Router Discovery tool
+- tcptraceroute6: lightweight IPv6 tcptraceroute
+- traceroute6: IPv6 traceroute
+- rdnssd: Recursive DNS Servers discovery Daemon
 
 %description -l pl.UTF-8
-ndisc6 zawiera dwa małe narzędzia działające z linii poleceń (ndisc6 i
-rdisc6) wykonujące odpowiednio ICMPv6 Neighbor Discovery
-(rozpoznawanie sąsiadów) i ICMPv6 Router Discovery (rozpoznawanie
-routerów). Są przeznaczone głównie do diagnostyki sieci IPv6 oraz
-wykrywania bezprawnych węzłów lub routerów IPv6 w segmencie sieci
-Ethernet.
+NDisc6 jest małym zestawem użytecznych narzędzi do dla sieci IPv6.
+Zawiera następujące programy:
+- ndisc6: narzędzie do wykrywania sąsiednich wezłów za pomocą
+  protokołu
+  ICMPv6 Neighbor Discovery
+- rdisc6: narzędzie do wykrywania routerów za pomocą protokołu
+  ICMPv6 Router Discovery
+- tcptraceroute6: lekki program do pokazywania trasy pakietów TCP
+  w sieciach IPv6
+- traceroute6: program do pokazywania trasy pakietów w sieciach IPv6
+- rdnssd: demon do wykrywania rekursywnych serwerów DNS w sieciach
+  IPv6
 
 %prep
 %setup -q
