@@ -1,0 +1,16 @@
+
+start on pld.sysinit-done
+stop on pld.shutdown-started
+
+respawn
+
+script
+	. /etc/sysconfig/rdnssd
+	if [ -n "$MERGE_HOOK" ] ; then
+		exec /usr/sbin/rdnssd -f -H "$MERGE_HOOK"
+	else
+		exec /usr/sbin/rdnssd -f
+	fi
+end script
+
+# vi: ft=upstart

@@ -1,0 +1,7 @@
+# Customized settings for RDNSS Daemon
+
+# Define nice level for rdnssd
+#SERVICE_RUN_NICE_LEVEL="+0"
+
+# Comment-out or change if you don't want rdnssd to modify your resolv.conf
+MERGE_HOOK="/etc/rdnssd/merge-hook"

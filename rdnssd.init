@@ -1,0 +1,78 @@
+#!/bin/sh
+#
+# rdnssd	Starts rdnssd
+#
+# chkconfig:	2345 09 85
+# description:	rdnssd configures DNS servers discovered via an IPv6 Router
+# 		Announcements
+
+# Source function library
+. /etc/rc.d/init.d/functions
+
+MERGE_HOOK=""
+
+# Get service config
+if [ -f /etc/sysconfig/rdnssd ]; then
+	. /etc/sysconfig/rdnssd
+fi
+
+start() {
+	# Check if the service is already running?
+	if [ -f /var/lock/subsys/rdnssd ]; then
+		msg_already_running "rdnssd"
+		return
+	fi
+
+
+	msg_starting "rdnssd"
+	emit starting JOB=rdnssd
+	if [ -n "$MERGE_HOOK" ] ; then
+		daemon /usr/sbin/rdnssd -H $MERGE_HOOK
+	else
+		daemon /usr/sbin/rdnssd
+	fi
+	emit --no-wait started JOB=rdnssd
+	RETVAL=$?
+	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/rdnssd
+}
+
+stop() {
+	if [ ! -f /var/lock/subsys/rdnssd ]; then
+		msg_not_running "rdnssd"
+		return
+	fi
+
+	msg_stopping "rdnssd"
+	emit stopping JOB=rdnssd
+	killproc rdnssd
+	emit --no-wait stopped JOB=rdnssd
+	rm -f /var/lock/subsys/rdnssd >/dev/null 2>&1
+}
+
+upstart_controlled
+
+RETVAL=0
+# See how we were called.
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  restart|try-restart)
+	stop
+	start
+	;;
+  reload|force-reload)
+	;;
+  status)
+	status rdnssd
+	exit $?
+	;;
+  *)
+	msg_usage "$0 {start|stop|restart|status}"
+	exit 3
+esac
+
+exit $RETVAL

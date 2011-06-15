@@ -1,0 +1,24 @@
+diff -dur ndisc6-1.0.1.orig/doc/rdnssd.8-in ndisc6-1.0.1/doc/rdnssd.8-in
+--- ndisc6-1.0.1.orig/doc/rdnssd.8-in	2008-02-08 16:39:31.000000000 +0100
++++ ndisc6-1.0.1/doc/rdnssd.8-in	2011-06-15 10:12:43.000000000 +0200
+@@ -63,7 +63,7 @@
+ .TP
+ .BR "\-u username" " or " "\-\-user username"
+ Override the user that the program will run as. By default, it runs as
+-.BR "nobody" "."
++.BR "rdnssd" "."
+ 
+ .TP
+ .BR "\-V" " or " "\-\-version"
+diff -dur ndisc6-1.0.1.orig/rdnssd/rdnssd.c ndisc6-1.0.1/rdnssd/rdnssd.c
+--- ndisc6-1.0.1.orig/rdnssd/rdnssd.c	2008-03-23 10:54:25.000000000 +0100
++++ ndisc6-1.0.1/rdnssd/rdnssd.c	2011-06-15 10:13:02.000000000 +0200
+@@ -551,7 +551,7 @@
+ 
+ int main (int argc, char *argv[])
+ {
+-	const char *username = "nobody", *hookpath = NULL,
++	const char *username = "rdnssd", *hookpath = NULL,
+ 	           *pidpath = LOCALSTATEDIR "/run/rdnssd.pid",
+ 	           *resolvpath = LOCALSTATEDIR "/run/rdnssd/resolv.conf";
+ 	int pidfd, val, pipefd = -1;
