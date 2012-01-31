@@ -10,6 +10,7 @@ Source0:	http://www.remlab.net/files/ndisc6/%{name}-%{version}.tar.bz2
 Source1:	rdnssd.init
 Source2:	rdnssd.sysconfig
 Source3:	rdnssd.upstart
+Source4:	%{name}.tmpfiles
 Patch0:		%{name}-no_chown.patch
 Patch1:		rdnssd-uid.patch
 URL:		http://www.remlab.net/ndisc6/
@@ -94,7 +95,8 @@ DNS w sieciach IPv6.
 	LDFLAGS="%{rpmldflags}"
 
 %install
-install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig,init}
+install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig,init} \
+	$RPM_BUILD_ROOT/usr/lib/tmpfiles.d
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -104,6 +106,7 @@ touch $RPM_BUILD_ROOT/var/run/rdnssd/resolv.conf
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/rdnssd
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/rdnssd
 install %{SOURCE3} $RPM_BUILD_ROOT/etc/init/rdnssd.conf
+install %{SOURCE4} $RPM_BUILD_ROOT/usr/lib/tmpfiles.d/%{name}.conf
 
 %find_lang %{name}
 
@@ -170,6 +173,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/rdnssd.8*
 %attr(775,root,rdnssd) %dir /var/run/rdnssd
 %ghost %attr(644,rdnssd,rdnssd) /var/run/rdnssd/resolv.conf
+/usr/lib/tmpfiles.d/%{name}.conf
 
 %files rdnssd-upstart
 %defattr(644,root,root,755)
