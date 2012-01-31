@@ -2,7 +2,7 @@ Summary:	Neighbor Discovery tools for IPv6
 Summary(pl.UTF-8):	Narzędzia do rozpoznawania sąsiadów dla IPv6
 Name:		ndisc6
 Version:	1.0.1
-Release:	2
+Release:	3
 License:	GPL v2
 Group:		Networking/Admin
 Source0:	http://www.remlab.net/files/ndisc6/%{name}-%{version}.tar.bz2
