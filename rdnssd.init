@@ -25,13 +25,11 @@ start() {
 
 
 	msg_starting "rdnssd"
-	emit starting JOB=rdnssd
 	if [ -n "$MERGE_HOOK" ] ; then
 		daemon /usr/sbin/rdnssd -H $MERGE_HOOK
 	else
 		daemon /usr/sbin/rdnssd
 	fi
-	emit --no-wait started JOB=rdnssd
 	RETVAL=$?
 	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/rdnssd
 }
@@ -43,13 +41,9 @@ stop() {
 	fi
 
 	msg_stopping "rdnssd"
-	emit stopping JOB=rdnssd
 	killproc rdnssd
-	emit --no-wait stopped JOB=rdnssd
 	rm -f /var/lock/subsys/rdnssd >/dev/null 2>&1
 }
-
-upstart_controlled
 
 RETVAL=0
 # See how we were called.

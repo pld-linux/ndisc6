@@ -2,15 +2,14 @@ Summary:	Neighbor Discovery tools for IPv6
 Summary(pl.UTF-8):	Narzędzia do rozpoznawania sąsiadów dla IPv6
 Name:		ndisc6
 Version:	1.0.1
-Release:	3
+Release:	4
 License:	GPL v2
 Group:		Networking/Admin
 Source0:	http://www.remlab.net/files/ndisc6/%{name}-%{version}.tar.bz2
 # Source0-md5:	d0b8233a60e29ad78d9aebb8cef0b3f2
 Source1:	rdnssd.init
 Source2:	rdnssd.sysconfig
-Source3:	rdnssd.upstart
-Source4:	%{name}.tmpfiles
+Source3:	%{name}.tmpfiles
 Patch0:		%{name}-no_chown.patch
 Patch1:		rdnssd-uid.patch
 URL:		http://www.remlab.net/ndisc6/
@@ -62,21 +61,6 @@ Recursive DNS Servers discovery Daemon.
 %description -l pl.UTF-8 rdnssd
 Demon do wykrywania rekursywnych serwerów DNS w sieciach IPv6.
 
-%package rdnssd-upstart
-Summary:	Upstart job sescription for rdnssd
-Summary(pl.UTF-8):	Opis zadania Upstart dla rdnssd
-Group:		Networking/Daemons
-Requires:	upstart >= 0.6
-Requires:	%{name}-rdnssd = %{version}-%{release}
-
-%description rdnssd-upstart
-Upstart job description for the Recursive DNS Servers discovery
-Daemon.
-
-%description -l pl.UTF-8 rdnssd-upstart
-Opis zadania Upstart dla demona do wykrywania rekursywnych serwerów
-DNS w sieciach IPv6.
-
 %prep
 %setup -q
 %patch0 -p1
@@ -95,7 +79,7 @@ DNS w sieciach IPv6.
 	LDFLAGS="%{rpmldflags}"
 
 %install
-install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig,init} \
+install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig} \
 	$RPM_BUILD_ROOT/usr/lib/tmpfiles.d
 
 %{__make} install \
@@ -105,8 +89,7 @@ touch $RPM_BUILD_ROOT/var/run/rdnssd/resolv.conf
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/rdnssd
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/rdnssd
-install %{SOURCE3} $RPM_BUILD_ROOT/etc/init/rdnssd.conf
-install %{SOURCE4} $RPM_BUILD_ROOT/usr/lib/tmpfiles.d/%{name}.conf
+install %{SOURCE3} $RPM_BUILD_ROOT/usr/lib/tmpfiles.d/%{name}.conf
 
 %find_lang %{name}
 
@@ -129,12 +112,6 @@ if [ "$1" = "0" ]; then
         %userremove rdnssd
         %groupremove rdnssd
 fi
-
-%post rdnssd-upstart
-%upstart_post rdnssd
-
-%postun rdnssd-upstart
-%upstart_postun rdnssd
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -174,7 +151,3 @@ rm -rf $RPM_BUILD_ROOT
 %attr(775,root,rdnssd) %dir /var/run/rdnssd
 %ghost %attr(644,rdnssd,rdnssd) /var/run/rdnssd/resolv.conf
 /usr/lib/tmpfiles.d/%{name}.conf
-
-%files rdnssd-upstart
-%defattr(644,root,root,755)
-%config(noreplace) %verify(not md5 mtime size) /etc/init/rdnssd.conf
