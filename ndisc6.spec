@@ -1,21 +1,22 @@
 Summary:	Neighbor Discovery tools for IPv6
 Summary(pl.UTF-8):	Narzędzia do rozpoznawania sąsiadów dla IPv6
 Name:		ndisc6
-Version:	1.0.1
-Release:	4
+Version:	1.0.8
+Release:	1
 License:	GPL v2
 Group:		Networking/Admin
-Source0:	http://www.remlab.net/files/ndisc6/%{name}-%{version}.tar.bz2
-# Source0-md5:	d0b8233a60e29ad78d9aebb8cef0b3f2
+Source0:	https://www.remlab.net/files/ndisc6/%{name}-%{version}.tar.bz2
+# Source0-md5:	335a810a0180d36a1e2a5a81c425e2d6
 Source1:	rdnssd.init
 Source2:	rdnssd.sysconfig
 Source3:	%{name}.tmpfiles
 Patch0:		%{name}-no_chown.patch
 Patch1:		rdnssd-uid.patch
-URL:		http://www.remlab.net/ndisc6/
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	libtool
+URL:		https://www.remlab.net/ndisc6/
+BuildRequires:	autoconf >= 2.62
+BuildRequires:	automake >= 1:1.11
+BuildRequires:	gcc >= 6:4.7
+BuildRequires:	gettext-tools >= 0.19.3
 BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -67,16 +68,14 @@ Demon do wykrywania rekursywnych serwerów DNS w sieciach IPv6.
 %patch -P1 -p1
 
 %build
-%{__libtoolize}
 %{__aclocal} -I m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure
+%configure \
+	--disable-silent-rules
 
-%{__make} \
-	CFLAGS="%{rpmcflags}" \
-	LDFLAGS="%{rpmldflags}"
+%{__make}
 
 %install
 install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig} \
@@ -89,7 +88,7 @@ touch $RPM_BUILD_ROOT/var/run/rdnssd/resolv.conf
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/rdnssd
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/rdnssd
-install %{SOURCE3} $RPM_BUILD_ROOT/usr/lib/tmpfiles.d/%{name}.conf
+install %{SOURCE3} $RPM_BUILD_ROOT%{systemdtmpfilesdir}/%{name}.conf
 
 %find_lang %{name}
 
@@ -150,4 +149,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/rdnssd.8*
 %attr(775,root,rdnssd) %dir /var/run/rdnssd
 %ghost %attr(644,rdnssd,rdnssd) /var/run/rdnssd/resolv.conf
-/usr/lib/tmpfiles.d/%{name}.conf
+%{systemdtmpfilesdir}/ndisc6.conf

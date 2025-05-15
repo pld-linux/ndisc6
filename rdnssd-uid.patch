@@ -10,10 +10,9 @@ diff -dur ndisc6-1.0.1.orig/doc/rdnssd.8-in ndisc6-1.0.1/doc/rdnssd.8-in
  
  .TP
  .BR "\-V" " or " "\-\-version"
-diff -dur ndisc6-1.0.1.orig/rdnssd/rdnssd.c ndisc6-1.0.1/rdnssd/rdnssd.c
---- ndisc6-1.0.1.orig/rdnssd/rdnssd.c	2008-03-23 10:54:25.000000000 +0100
-+++ ndisc6-1.0.1/rdnssd/rdnssd.c	2011-06-15 10:13:02.000000000 +0200
-@@ -551,7 +551,7 @@
+--- ndisc6-1.0.8/rdnss/rdnssd.c.orig	2022-05-11 20:30:50.000000000 +0200
++++ ndisc6-1.0.8/rdnss/rdnssd.c	2025-05-15 20:46:01.549367917 +0200
+@@ -757,7 +757,7 @@ version (void)
  
  int main (int argc, char *argv[])
  {

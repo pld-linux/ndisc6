@@ -1,22 +1,10 @@
-diff -burNp ndisc6-1.0.1/rdnssd/Makefile.am ndisc6-1.0.1-dud/rdnssd/Makefile.am
---- ndisc6-1.0.1/rdnssd/Makefile.am	2010-01-24 09:32:21.000000000 +0100
-+++ ndisc6-1.0.1-dud/rdnssd/Makefile.am	2011-03-19 09:42:16.768235512 +0100
-@@ -43,7 +43,6 @@ merge-hook: merge-hook.in Makefile.in $(
+--- ndisc6-1.0.8/rdnss/Makefile.am.orig	2016-12-07 19:11:55.000000000 +0100
++++ ndisc6-1.0.8/rdnss/Makefile.am	2025-05-15 20:42:59.737019545 +0200
+@@ -27,7 +27,6 @@ merge-hook: rdnss/merge-hook.in config.s
  
- install-data-hook:
+ install-data-hook::
  	$(install_sh) -d -- $(DESTDIR)$(myrundir)
 -	-chown -- nobody $(DESTDIR)$(myrundir)
  
- uninstall-hook:
- 	-rmdir $(DESTDIR)$(myrundir)
-diff -burNp ndisc6-1.0.1/rdnssd/Makefile.in ndisc6-1.0.1-dud/rdnssd/Makefile.in
---- ndisc6-1.0.1/rdnssd/Makefile.in	2010-11-16 20:14:41.000000000 +0100
-+++ ndisc6-1.0.1-dud/rdnssd/Makefile.in	2011-03-19 09:42:24.845269517 +0100
-@@ -604,7 +604,6 @@ merge-hook: merge-hook.in Makefile.in $(
- 
- install-data-hook:
- 	$(install_sh) -d -- $(DESTDIR)$(myrundir)
--	-chown -- nobody $(DESTDIR)$(myrundir)
- 
- uninstall-hook:
+ uninstall-hook::
  	-rmdir $(DESTDIR)$(myrundir)
