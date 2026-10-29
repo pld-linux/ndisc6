@@ -1,22 +1,22 @@
 Summary:	Neighbor Discovery tools for IPv6
 Summary(pl.UTF-8):	Narzędzia do rozpoznawania sąsiadów dla IPv6
 Name:		ndisc6
-Version:	1.0.8
+Version:	1.0.9
 Release:	1
 License:	GPL v2
 Group:		Networking/Admin
 Source0:	https://www.remlab.net/files/ndisc6/%{name}-%{version}.tar.bz2
-# Source0-md5:	335a810a0180d36a1e2a5a81c425e2d6
+# Source0-md5:	4722d87a954cdee97432348eb91a44ff
 Source1:	rdnssd.init
 Source2:	rdnssd.sysconfig
 Source3:	%{name}.tmpfiles
 Patch0:		%{name}-no_chown.patch
 Patch1:		rdnssd-uid.patch
 URL:		https://www.remlab.net/ndisc6/
-BuildRequires:	autoconf >= 2.62
+BuildRequires:	autoconf >= 2.70
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	gcc >= 6:4.7
-BuildRequires:	gettext-tools >= 0.19.3
+BuildRequires:	gettext-tools >= 1.0
 BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -117,7 +117,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc ChangeLog NEWS README
+%doc NEWS README
 %attr(755,root,root) %{_bindir}/dnssort
 %attr(755,root,root) %{_bindir}/name2addr
 %attr(755,root,root) %ghost %{_bindir}/addr2name
